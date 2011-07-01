@@ -44,6 +44,7 @@ map <leader>e :e! ~/_vimrc<cr>
 " Set 7 lines to the curors - when moving vertical..
 set so=7
 
+set wildmode=longest:full
 set wildmenu "Turn on WiLd menu
 
 set ruler "Always show current position
@@ -352,4 +353,6 @@ set cot-=preview
 set formatoptions-=rco
 
 au FileType java set fo-=r
+au FileType perl set fo-=r
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
