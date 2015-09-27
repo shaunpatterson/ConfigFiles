@@ -153,6 +153,11 @@ map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
 map <leader>t8 :setlocal shiftwidth=4<cr>
 
+" Make copy/pasta work in gvim
+imap <C-S-X> "+x
+imap <C-S-C> "+y 
+imap <C-S-V> "+gP
+
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
