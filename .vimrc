@@ -9,6 +9,14 @@ endif
 " To work with windows
 set runtimepath=~/_vim,~/.vim,$VIMRUNTIME
 
+execute pathogen#infect()
+noremap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,8 +52,8 @@ map <leader>e :e! ~/_vimrc<cr>
 " Set 7 lines to the curors - when moving vertical..
 set so=7
 
-set wildmode=longest:full
 set wildmenu "Turn on WiLd menu
+set wildmode=longest:full,full
 
 set ruler "Always show current position
 
@@ -302,13 +310,13 @@ endtry
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
-au FileType python set nocindent
+au FileType python set nocindent nosmartindent
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
-au BufNewFile,BufRead *.py set noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 
+au BufNewFile,BufRead *.py set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
 
 au FileType python inoremap <buffer> $r return
 au FileType python inoremap <buffer> $i import
@@ -356,3 +364,15 @@ au FileType java set fo-=r
 au FileType perl set fo-=r
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+let loaded_rainbow = 1
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'cakebaker/scss-syntax.vim'
