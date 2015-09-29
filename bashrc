@@ -1,21 +1,26 @@
 export PS1="[\u@\h \W] "
 
-
 alias xterm="xterm -bg DarkBlue -fg snow"
-alias ls="ls --color=auto"
 alias tree="tree -C"
 alias rm="rm -i "
 alias cp="cp -i " 
 alias vi="vim"
 alias gvim="vim -g"
 
-export JAVA_HOME=/usr/local/java
-export ANT_HOME=/usr/local/netbeans-6.0.1/java1/ant/
+
+if [ "$(uname)" == "Darwin" ]; then
+    echo "Darwin"
+    alias ls="gls --color=always"
+    eval `gdircolors ~/.dir_colors`
+else
+    echo "Linux"
+    alias ls="ls -G"
+    eval `dircolors ~/.dir_colors`
+fi
 
 alias aoeu="xmodmap /usr/share/xmodmap/xmodmap.us"				#-- Switches from dvorak back to standard
 alias asdf="xmodmap /usr/share/xmodmap/xmodmap.dvorak"			#-- Switches from standard to dvorak
 
-eval `dircolors ~/.dir_colors`
 
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/.vim/sessions/:$PATH

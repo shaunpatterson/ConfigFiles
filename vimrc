@@ -139,6 +139,7 @@ set noswapfile
 set expandtab
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 set smarttab
 
 
@@ -262,6 +263,9 @@ map <leader>tn :tabnew %<cr>
 map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+
+let g:snips_trigger_key = '<C-B>'
+let g:snips_trigger_key_backwards = '<C-L>'
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
