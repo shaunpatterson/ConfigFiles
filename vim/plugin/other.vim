@@ -107,12 +107,3 @@ endfun
 noremap <Plug>OtherFile :<C-U>call <SID>FindOther()<CR>
 map <F8> <Plug>OtherFile
 map <C-n> <Plug>OtherFile
-
-noremap <Plug>Q36File :<C-U>call <SID>RadarFile("q36")<CR>
-map <F6> <Plug>Q36File
-noremap <Plug>Q37File :<C-U>call <SID>RadarFile("q37")<CR>
-map <F7> <Plug>Q37File
-noremap <Plug>EQ36File :<C-U>call <SID>RadarFile("eq36")<CR>
-map <F5> <Plug>EQ36File
-"noremap <Plug>LCMRFile :<C-U>call <SID>RadarFile("lcmr")<CR>
-"map <F4> <Plug>LCMRFile

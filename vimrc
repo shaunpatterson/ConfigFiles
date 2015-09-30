@@ -386,3 +386,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'cakebaker/scss-syntax.vim'
+
+""""""""""""""""""""""""""""""""""
+"" Plugin Configurations 
+""""""""""""""""""""""""""""""""""
+
+let g:cssColorVimDoNotMessMyUpdatetime = 1
