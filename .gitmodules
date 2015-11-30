@@ -39,7 +39,7 @@
 	url = https://github.com/honza/vim-snippets.git
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
-	url = git://github.com/tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/comments.vim"]
 	path = vim/bundle/comments.vim
 	url = https://github.com/spattersongt/comments.vim
