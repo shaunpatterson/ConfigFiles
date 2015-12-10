@@ -392,3 +392,7 @@ Plugin 'cakebaker/scss-syntax.vim'
 """"""""""""""""""""""""""""""""""
 
 let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+
+let g:ctrlp_map = '<D-r>'
+let g:ctrlp_cmd = 'CtrlP'

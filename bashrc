@@ -1,4 +1,8 @@
-export PS1="[\u@\h \W] "
+if [[ $(hostname) == "UOIANShatterson.urbanout.com" ]]; then
+    export PS1="[\u@mac \W] "
+else
+    export PS1="[\u@\h \W] "
+fi
 
 alias xterm="xterm -bg DarkBlue -fg snow"
 alias tree="tree -C"
@@ -9,11 +13,9 @@ alias gvim="vim -g"
 
 
 if [ "$(uname)" == "Darwin" ]; then
-    echo "Darwin"
     alias ls="gls --color=always"
     eval `gdircolors ~/.dir_colors`
 else
-    echo "Linux"
     alias ls="ls -G"
     eval `dircolors ~/.dir_colors`
 fi
@@ -34,3 +36,10 @@ export GIT_AUTHOR_NAME="Shaun Patterson"
 
 export PATH=/home/shaun/Download/android-sdk-linux_x86/tools/:$PATH
 export PATH=/usr/java/latest/bin:$PATH
+
+export PATH=~/bin:$PATH
+
+export NVM_DIR="/Users/pattersons1/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+source /Users/pattersons1/Developer/anthroweb/env-config
