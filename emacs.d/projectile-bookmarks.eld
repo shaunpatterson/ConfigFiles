@@ -1,0 +1,1 @@
+("~/.emacs.d/lisp/" "~/Developer/anthroweb/" "~/github/noctilux-xterm16-theme/" "/usr/local/" "~/")
