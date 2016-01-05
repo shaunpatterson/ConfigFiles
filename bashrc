@@ -43,3 +43,5 @@ export NVM_DIR="/Users/pattersons1/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 source /Users/pattersons1/Developer/anthroweb/env-config
+
+alias aw='cd ~/Developer/anthroweb'

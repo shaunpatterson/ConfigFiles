@@ -10,10 +10,16 @@ endif
 set runtimepath=~/_vim,~/.vim,$VIMRUNTIME
 
 execute pathogen#infect()
-noremap <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'cakebaker/scss-syntax.vim'
 
 
 
@@ -39,11 +45,9 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Fast editing of the .vimrc
-map <leader>e :e! ~/_vimrc<cr>
 
 " When vimrc is edited, reload it
-"autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,6 +96,8 @@ set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 "set statusline+=%y       "filetype
 "set statusline+=%*       "switch back to normal statusline highlight
 "set statusline+=%l       "line number
+
+set guitablabel=%t
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -377,15 +383,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 let loaded_rainbow = 1
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'cakebaker/scss-syntax.vim'
 
 """"""""""""""""""""""""""""""""""
 "" Plugin Configurations 
@@ -394,5 +391,32 @@ Plugin 'cakebaker/scss-syntax.vim'
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 
-let g:ctrlp_map = '<D-r>'
+let g:ctrlp_map = "<Leader>r"
 let g:ctrlp_cmd = 'CtrlP'
+
+noremap <Leader>n :NERDTreeToggle<CR>
+noremap <Leader>c :NERDTree-cd<CR>
+noremap <Leader>a :NERDTree ~/Developer/anthroweb<CR>
+noremap <Leader>f :NERDTree ~/Developer/anthroweb/features<CR>
+
+
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Close the nerdtree when opening a file
+let g:NERDTreeQuitOnOpen = 1    
+
+" Quit vim if NERDTree is the last open buffe
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#checks = [ 'indent', 'long' ]
+
+" Filename only in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Remove Ex Mode
+nnoremap Q <Nop>
+
