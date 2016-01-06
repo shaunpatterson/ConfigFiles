@@ -114,21 +114,6 @@
 (add-hook 'ibuffer-mode-hook #'ibuffer-auto-mode)
 
 
-;; store most files in the cache
-(setq backup-directory-alist
-      `((".*" . ,(concat dotemacs-cache-directory "backups")))
-      auto-save-file-name-transforms
-      `((".*" ,(concat dotemacs-cache-directory "backups") t))
-      auto-save-list-file-prefix
-      (concat dotemacs-cache-directory "auto-save-list/saves-"))
-
-
-;; better scrolling
-(setq scroll-conservatively 9999
-      scroll-preserve-screen-position t
-      scroll-margin 3)
-
-
 ;; better buffer names for duplicates
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
@@ -195,9 +180,8 @@
     (setq show-trailing-whitespace t))
 
   (when (string-match "\\.min\\." (buffer-file-name))
-    (fundamental-mode))
+    (fundamental-mode)))
 
-  (visual-line-mode))
 (add-hook 'find-file-hook #'my-find-file-hook)
 
 

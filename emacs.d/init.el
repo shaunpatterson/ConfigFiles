@@ -152,7 +152,7 @@ N is negative)."
 
 (load-theme 'noctilux-xterm16 t)
 
-(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "~/bin" ":" "/usr/local/bin" ":" (getenv "PATH")))
 
 (provide 'emacs)
 ;;; emacs ends here

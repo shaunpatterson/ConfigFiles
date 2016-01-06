@@ -13,8 +13,13 @@
 (after 'evil
   (require-package 'key-chord)
   (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+
+  ;; wtf is this?
+  ;;(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  ;;(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+
+  (define-key evil-emacs-state-map "C-c C-c" 'switch-to-prev-buffer)
+  
 
   (after 'evil-leader
     (evil-leader/set-leader ",")
@@ -46,7 +51,7 @@
       "o"  'delete-other-windows  ;; C-w
       "r"  'helm-projectile-find-file
       "R"  (lambda () (interactive) (font-lock-fontify-buffer) (redraw-display))
-      "s"  'ag-project            ;; Ag search from project's root
+      "s"  'helm-projectile-ag      ;; Ag search from project's root
       "S"  'delete-trailing-whitespace
       ;; "s" (kbd "C-w s C-w j")
       "t"  'gtags-reindex
@@ -84,8 +89,8 @@
     (evil-ex-define-cmd "Gw" (bind
                               (git-gutter+-stage-whole-buffer))))
 
-  (define-key evil-visual-state-map (kbd "SPC SPC") 'execute-extended-command)
-  (define-key evil-normal-state-map (kbd "SPC SPC") 'execute-extended-command)
+  (define-key evil-visual-state-map (kbd "SPC SPC") 'helm-M-x)
+  (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
   (define-key evil-normal-state-map (kbd "SPC o") 'imenu)
   (define-key evil-normal-state-map (kbd "SPC b") 'switch-to-buffer)
   (define-key evil-normal-state-map (kbd "SPC k") 'kill-buffer)
@@ -150,7 +155,9 @@
   (define-key evil-normal-state-map (kbd "C-b")   'elscreen-next) 
   (define-key evil-normal-state-map (kbd "C-t")   'smp/open-file)
   (define-key evil-normal-state-map (kbd "C-g")   'smp/new-tab)
-  (define-key evil-normal-state-map (kbd "C-s")   'smp/vsplit)
+  (define-key evil-insert-state-map (kbd "C-a")   'beginning-of-line)
+  (define-key evil-insert-state-map (kbd "C-e")   'end-of-line)
+  
   ;;(define-key evil-normal-state-map (kbd "C-r")   'helm-projectile-find-file)
 
   (define-key evil-normal-state-map (kbd "Q") 'my-window-killer)
@@ -340,10 +347,10 @@
 ;; have no use for these default bindings
 (global-unset-key (kbd "C-x m"))
 
-
 ;; replace with [r]eally [q]uit
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 (global-set-key (kbd "C-x C-c") (bind (message "Thou shall not quit!")))
+
 ;(after 'evil
 ;  (defadvice evil-quit (around advice-for-evil-quit activate)
 ;    (message "Thou shall not quit!"))
