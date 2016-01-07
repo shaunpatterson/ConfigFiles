@@ -100,7 +100,7 @@
 (require 'project-root)
 (require 'helm)
 (require 'helm-projectile)
-(require 'helm-elscreen)
+;;(require 'helm-elscreen)
 (require 'helm-utils)
 (require 'helm-plugin)
 
@@ -140,7 +140,7 @@ N is negative)."
 (require 'init-org)
 (require 'init-fonts)
 (require 'init-gtags)
-(require 'init-elscreen)
+;;(require 'init-elscreen)
 (require 'init-evil)
 (require 'init-maps)
 (require 'init-w3m)

@@ -26,6 +26,7 @@
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
+(setq helm-split-window-in-side-p t)
 (helm-projectile-on)
 
 (require 'highlight)

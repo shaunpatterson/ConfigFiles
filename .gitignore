@@ -1,4 +1,10 @@
 emacs.d/elpa/*
 emacs.d/elpa
 emacs.d/.cache
+emacs.d/.cache/*
+emacs.d/.cache/**/*
+emacs.d/ac-comphist.dat
+emacs.d/projectile*
+emacs.d/auto-save-list
+emacs.d/auto-save-list/*
 vim/sessions/*

@@ -49,7 +49,7 @@
       "nn" 'narrow-and-set-normal ;; Narrow to region and enter normal mode
       "nw" 'widen
       "o"  'delete-other-windows  ;; C-w
-      "r"  'helm-projectile-find-file
+      "r"  'helm-projectile
       "R"  (lambda () (interactive) (font-lock-fontify-buffer) (redraw-display))
       "s"  'helm-projectile-ag      ;; Ag search from project's root
       "S"  'delete-trailing-whitespace
@@ -143,21 +143,36 @@
     (interactive)
     (evil-ex "e "))
 
-  (defun smp/new-tab ()
-    (interactive)
-    (evil-ex "tabe "))
-
   (defun smp/vsplit ()
     (interactive)
     (evil-ex "vsplit "))
-  
-  (define-key evil-normal-state-map (kbd "C-l")   'elscreen-previous) 
-  (define-key evil-normal-state-map (kbd "C-b")   'elscreen-next) 
+
+  (defun smp/previous-buffer-in-project ()
+    (interactive)
+
+    (switch-to-buffer (car (last (projectile-buffers-with-file (projectile-project-buffers))))))
+
+  (defun smp/list-project-buffers ()
+    (interactive)
+    (message (projectile-buffers-with-file (projectile-project-buffers))))
+ 
+  (defun smp/next-buffer-in-project ()
+    (interactive)
+    (let* ((buffer (nth 1 (projectile-buffers-with-file (projectile-project-buffers))))
+           (prev (current-buffer)))
+      (switch-to-buffer buffer)
+      (bury-buffer prev)))
+ 
+
+  (define-key evil-normal-state-map (kbd "C-l")   'smp/previous-buffer-in-project)
+  (define-key evil-normal-state-map (kbd "C-b")   'smp/next-buffer-in-project)
   (define-key evil-normal-state-map (kbd "C-t")   'smp/open-file)
-  (define-key evil-normal-state-map (kbd "C-g")   'smp/new-tab)
+  ;;(define-key evil-normal-state-map (kbd "C-g")   'smp/new-tab)
   (define-key evil-insert-state-map (kbd "C-a")   'beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e")   'end-of-line)
-  
+  (define-key evil-normal-state-map (kbd "C-s")   'split-window-right)
+  (define-key evil-normal-state-map (kbd "C-n")   'smp/list-project-buffers)
+
   ;;(define-key evil-normal-state-map (kbd "C-r")   'helm-projectile-find-file)
 
   (define-key evil-normal-state-map (kbd "Q") 'my-window-killer)
