@@ -27,6 +27,7 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (setq helm-split-window-in-side-p t)
+(setq projectile-enable-caching t)
 (helm-projectile-on)
 
 (require 'highlight)
@@ -35,6 +36,19 @@
 (set-face-attribute 'evil-search-highlight-persist-highlight-face nil
                            :inherit 'region
                            :background nil)
+
+
+(setq insert-directory-program (executable-find "gls"))
+(global-font-lock-mode 1)
+
+(require 'jedi)
+(add-to-list 'ac-sources 'ac-source-jedi-direct)
+(add-hook 'python-mode-hook 'jedi:setup)
+
+(setq jedi:complete-on-dot t)
+
+(setq electric-pair-mode nil)
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (provide 'init-platform)
 ;;; init-platform.el ends here

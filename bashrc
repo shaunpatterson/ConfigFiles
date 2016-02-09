@@ -39,9 +39,34 @@ export PATH=/usr/java/latest/bin:$PATH
 
 export PATH=~/bin:$PATH
 
-export NVM_DIR="/Users/pattersons1/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 source /Users/pattersons1/Developer/anthroweb/env-config
 
 alias aw='cd ~/Developer/anthroweb'
+
+export URBNWEB_ROOT=~/Developer/URBNweb/urbnweb
+export BASE_ROOT=~/Developer/URBNweb/urbnweb
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+
+function a {
+    cd ~/Developer/ANCom
+    title ANCom
+    source venv/bin/activate
+}
+
+
+function u {
+    cd ~/Developer/URBNWeb
+    title URBNWeb
+    source venv/bin/activate
+}
+
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+

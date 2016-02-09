@@ -73,10 +73,6 @@
         "g c" (bind (require 'magit-commit) (call-interactively #'magit-commit-popup))
         "g z" 'magit-stash-popup)))
 
-  (after "evil-numbers-autoloads"
-    (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
-    (define-key evil-normal-state-map (kbd "C-S-a") 'evil-numbers/dec-at-pt))
-
   (after "git-gutter+-autoloads"
     (define-key evil-normal-state-map (kbd "[ h") #'git-gutter+-next-hunk)
     (define-key evil-normal-state-map (kbd "] h") #'git-gutter+-previous-hunk)
@@ -89,12 +85,17 @@
     (evil-ex-define-cmd "Gw" (bind
                               (git-gutter+-stage-whole-buffer))))
 
+  (define-key evil-emacs-state-map (kbd ", .") 'helm-mini)
+  (define-key evil-emacs-state-map (kbd ", b") 'switch-to-prev-buffer)
+  (define-key evil-emacs-state-map (kbd "ESC ESC") 'kill-buffer)
   (define-key evil-visual-state-map (kbd "SPC SPC") 'helm-M-x)
   (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
   (define-key evil-normal-state-map (kbd "SPC o") 'imenu)
   (define-key evil-normal-state-map (kbd "SPC b") 'switch-to-buffer)
   (define-key evil-normal-state-map (kbd "SPC k") 'kill-buffer)
   (define-key evil-normal-state-map (kbd "SPC f") 'find-file)
+
+
 
   (when (fboundp 'fzf)
     (define-key evil-normal-state-map (kbd "SPC f") 'fzf))
@@ -143,11 +144,7 @@
     (interactive)
     (evil-ex "e "))
 
-  (defun smp/vsplit ()
-    (interactive)
-    (evil-ex "vsplit "))
-
-  (defun smp/previous-buffer-in-project ()
+  (defun smp/next-buffer-in-project ()
     (interactive)
 
     (switch-to-buffer (car (last (projectile-buffers-with-file (projectile-project-buffers))))))
@@ -155,14 +152,28 @@
   (defun smp/list-project-buffers ()
     (interactive)
     (message (projectile-buffers-with-file (projectile-project-buffers))))
- 
-  (defun smp/next-buffer-in-project ()
+
+  (defun smp/previous-buffer-in-project ()
     (interactive)
     (let* ((buffer (nth 1 (projectile-buffers-with-file (projectile-project-buffers))))
            (prev (current-buffer)))
       (switch-to-buffer buffer)
       (bury-buffer prev)))
- 
+  
+  (defun smp/vsplit ()
+    (interactive)
+    (progn
+      (split-window-right)
+      (other-window 1)
+      (helm-projectile)))
+
+  (defun smp/hsplit ()
+    (interactive)
+    (progn
+      (split-window-below)
+      (other-window 1)
+      (helm-projectile)))
+  
 
   (define-key evil-normal-state-map (kbd "C-l")   'smp/previous-buffer-in-project)
   (define-key evil-normal-state-map (kbd "C-b")   'smp/next-buffer-in-project)
@@ -170,8 +181,24 @@
   ;;(define-key evil-normal-state-map (kbd "C-g")   'smp/new-tab)
   (define-key evil-insert-state-map (kbd "C-a")   'beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e")   'end-of-line)
-  (define-key evil-normal-state-map (kbd "C-s")   'split-window-right)
+  (define-key evil-normal-state-map (kbd "C-s")   'smp/vsplit)
+  (define-key evil-normal-state-map (kbd "C-d")   'smp/hsplit)
   (define-key evil-normal-state-map (kbd "C-n")   'smp/list-project-buffers)
+
+
+  (define-key evil-normal-state-map (kbd "C-a")   'beginning-of-line)
+  (define-key evil-normal-state-map (kbd "C-e")   'end-of-line)
+  (define-key minibuffer-local-map (kbd "C-a")   'beginning-of-line)
+  (define-key minibuffer-local-map (kbd "C-e")   'end-of-line)
+  (define-key evil-normal-state-map [s-left]   'beginning-of-line)
+  (define-key evil-normal-state-map [s-right]   'end-of-line)
+  (define-key evil-insert-state-map [s-left]   'beginning-of-line)
+  (define-key evil-insert-state-map [s-right]   'end-of-line)
+  (define-key minibuffer-local-map [s-left]   'beginning-of-line)
+  (define-key minibuffer-local-map [s-right]   'end-of-line)
+
+  (define-key global-map [?\s-d] 'projectile-find-dir)
+  (define-key global-map [?\s-e] 'er/expand-region)
 
   ;;(define-key evil-normal-state-map (kbd "C-r")   'helm-projectile-find-file)
 
@@ -304,11 +331,6 @@
 
 (after "expand-region-autoloads"
   (global-set-key (kbd "C-=") 'er/expand-region))
-
-
-(after 'web-mode
-  (after "angular-snippets-autoloads"
-    (define-key web-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point)))
 
 
 ;; mouse scrolling in terminal

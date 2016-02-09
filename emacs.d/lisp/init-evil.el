@@ -167,5 +167,7 @@
   (defadvice wgrep-to-original-mode (before wgrep-change-to-wgrep-mode/before activate)
     (turn-off-evil-mode)))
 
+(setq electric-pair-mode nil)
+
 (evil-mode 1)
 (provide 'init-evil)

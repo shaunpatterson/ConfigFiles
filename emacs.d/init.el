@@ -86,30 +86,39 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-(defvar backup-dir "~/.emacs.d/backups/")
-(setq backup-directory-alist (list (cons "." backup-dir)))
-(setq make-backup-files nil)
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+            `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+            `((".*" ,temporary-file-directory t)))
+
 
 ;;; File type overrides.
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
 
 (require 'rainbow-mode)
 (require 'cl-lib)
 (require 'projectile)
-(require 'project-root)
 (require 'helm)
 (require 'helm-projectile)
 ;;(require 'helm-elscreen)
 (require 'helm-utils)
 (require 'helm-plugin)
 
-(require 'project-root)
 (require 'init-utils)
 (require 'init-core)
 (require 'init-platform)
 (require 'init-global-functions)
 (require 'init-elpa)
+(require 'init-linum)
 
 (maybe-require-package 'use-package)
 (eval-when-compile
@@ -149,10 +158,14 @@ N is negative)."
 ;,(require 'anything-c-javadoc)
 (require 'init-flycheck)
 (require 'init-bindings)
+(require 'init-filetypes)
 
 (load-theme 'noctilux-xterm16 t)
 
-(setenv "PATH" (concat "~/bin" ":" "/usr/local/bin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "~/bin" ":"
+                       "/usr/local/bin" ":"
+                       "~/.nvm/versions/node/v5.1.1/bin/"
+                       (getenv "PATH")))
 
 (provide 'emacs)
 ;;; emacs ends here
@@ -161,6 +174,18 @@ N is negative)."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#000000" "#ff3333" "#afd7af" "#aaeecc" "#aaccff" "#FF1F69" "#aadddd" "#999999"])
+ '(background-color "#000000")
+ '(background-mode dark)
+ '(cursor-color "#cccccc")
+ '(custom-safe-themes
+   (quote
+    ("900e1778453b1a015f8deddcf0a5ec75e7c1a9bb7ff8a99c5aeb0d92762587da" default)))
+ '(foreground-color "#cccccc")
+ '(package-selected-packages
+   (quote
+    (yasnippet-bundle yasnippet which-key web-mode w3m use-package twittering-mode scss-mode rainbow-mode python3-info python-pep8 python-mode powerline-evil key-chord json-mode js2-mode jedi-direx helm-projectile helm-gtags helm-ag helm-ack gtags fullframe flymake-sass flymake-python-pyflakes flymake-csslint flymake-css flycheck evil-visualstar evil-tabs evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-matchit evil-magit evil-leader evil-jumper evil-indent-textobject evil-exchange evil-commentary evil-anzu elscreen-separate-buffer-list bpr ack ac-etags)))
  '(safe-local-variable-values (quote ((no-byte-compile t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

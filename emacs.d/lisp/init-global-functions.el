@@ -14,6 +14,7 @@
 
 (defadvice load-theme (after restore-line-numbering)
   "Re-set linum-format after loading themes, which frequently overwrite it."
+  (defvar linum-format)
   (setq linum-format 'my-linum-relative-line-numbers))
 (ad-activate 'load-theme)
 

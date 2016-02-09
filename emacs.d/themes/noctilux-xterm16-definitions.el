@@ -623,6 +623,19 @@ the \"Gen RGB\" column in noctilux-definitions.el to improve them further."
              (company-preview-search ((t (,@fg-violet ,@bg-base01))))
              (company-echo ((t nil)))
              (company-echo-common ((t (,@fg-violet))))
+
+             ;;
+             ;;
+             ;; web-modeweb-mode-doctype-face,
+             ;; web-mode-html-tag-face,
+             ;; web-mode-html-tag-bracket-face,
+             ;; web-mode-html-attr-name-face,
+             ;; web-mode-html-attr-value-face,
+             ;; web-mode-html-attr-equal-face,
+             ;; web-mode-html-tag-custom-face,
+             ;; web-mode-attr-tag-custom-face
+             (web-mode-html-tag-face ((t (,@fmt-none ,@fg-green)))) 
+             
 	     ;;ansi-term
 	     (term-color-black ((t ( ,@fg-base02))))
 	     (term-color-red ((t ( ,@fg-red))))
@@ -632,6 +645,7 @@ the \"Gen RGB\" column in noctilux-definitions.el to improve them further."
 	     (term-color-magenta ((t ( ,@fg-magenta))))
 	     (term-color-cyan ((t ( ,@fg-cyan))))
 	     (term-color-white ((t ( ,@fg-base00)))))
+            
 
 
             ((foreground-color . ,(when (<= 16 (display-color-cells)) base0))

@@ -176,8 +176,8 @@
 
 
 (defun my-find-file-hook ()
-  (unless (eq major-mode 'org-mode)
-    (setq show-trailing-whitespace t))
+  ;;(unless (eq major-mode 'org-mode)
+    ;;(setq show-trailing-whitespace t))
 
   (when (string-match "\\.min\\." (buffer-file-name))
     (fundamental-mode)))
