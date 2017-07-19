@@ -380,6 +380,7 @@ au FileType java set fo-=r
 au FileType perl set fo-=r
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd BufNewFile,BufRead *.j2 set syntax=html
 
 let loaded_rainbow = 1
 

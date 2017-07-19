@@ -20,10 +20,6 @@ else
     eval `dircolors ~/.dir_colors`
 fi
 
-alias aoeu="xmodmap /usr/share/xmodmap/xmodmap.us"				#-- Switches from dvorak back to standard
-alias asdf="xmodmap /usr/share/xmodmap/xmodmap.dvorak"			#-- Switches from standard to dvorak
-
-
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/.vim/sessions/:$PATH
 
@@ -34,24 +30,29 @@ export GIT_COMMITTER_NAME="Shaun Patterson"
 export GIT_AUTHOR_EMAIL="shaunpatterson@gmail.com"
 export GIT_AUTHOR_NAME="Shaun Patterson"
 
-export PATH=/home/shaun/Download/android-sdk-linux_x86/tools/:$PATH
-export PATH=/usr/java/latest/bin:$PATH
-
 export PATH=~/bin:$PATH
 
-source /Users/pattersons1/Developer/anthroweb/env-config
 
 alias aw='cd ~/Developer/anthroweb'
 
 export URBNWEB_ROOT=~/Developer/URBNweb/urbnweb
+export URBNWEB_QA_ROOT=/Users/pattersons1/Developer/URBNWeb/urbnweb
 export BASE_ROOT=~/Developer/URBNweb/urbnweb
+
+alias cleanup_branches='git branch --merged | egrep -v "\*|master|dev" | xargs -n 1 git branch -d'
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk
 
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export PATH="$HOME/.jenv/bin:$PATH"
+
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/n/bin:$PATH"
+eval "$(pyenv init -)"
 
 function a {
     cd ~/Developer/ANCom
@@ -59,14 +60,56 @@ function a {
     source venv/bin/activate
 }
 
+function b {
+    cd ~/Developer/WLCom
+    title WLCom
+    source venv/bin/activate
+}
+
+function o {
+    cd ~/Developer/UOCom
+    title UOCom
+    source ~/Developer/UOCom/venv/bin/activate
+}
 
 function u {
     cd ~/Developer/URBNWeb
     title URBNWeb
-    source venv/bin/activate
+    source ~/Developer/ANCom/venv/bin/activate
 }
+
+function f {
+    cd ~/Developer/FPCommon
+    title FP
+    source ~/Developer/FPCommon/venv/bin/activate
+}
+
+function r {
+    cd ~/workspace/rg-apps/email_service
+    title RG
+    ./mac_venv.sh
+}
+
+function p {
+    cd ~/workspace/rg-apps/paphub
+    title PH
+    source ~/workspace/rg-apps/paphub/venv/bin/activate
+}
+
+function g {
+    cd ~/Developer/groundhog-engine
+}
+
+
+
 
 function title {
     echo -ne "\033]0;"$*"\007"
 }
 
+ defaults write -g InitialKeyRepeat -int 8
+ defaults write -g KeyRepeat -int 1
+
+export PATH=$PATH:~/go/bin
+
+ export UDACITY_AUTH_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5Mjc3MSwiZXhwIjoxNDkzNTgxMDg1LCJ0b2tlbl90eXBlIjoiYXBpIn0.neU0xfRbXhOK7B-VpHQlmrYP-ypACcYA1uNQ5bywe-o
