@@ -1,0 +1,30 @@
+"nnoremap <C-c> :action CommentByLineComment<CR>
+
+" set keymodel="continueselect"
+" set selectmode="key,template"
+
+" nnoremap <S-Right> :action EditorRightWithSelection<CR>
+" nnoremap <S-Up> :action EditorUpWithSelection<CR>
+" nnoremap <S-Down> :action EditorDownWithSelection<CR>
+" nnoremap <S-Home> :action EditorLineStartWithSelection<CR>
+" nnoremap <S-End> :action EditorLineEndWithSelection<CR>
+" nnoremap <Del> :action Delete<CR>
+
+" inoremap <S-Right> <C-O>:action EditorRightWithSelection<CR>
+" inoremap <S-Up> <C-O>:action EditorUpWithSelection<CR>
+" inoremap <S-Down> <C-O>:action EditorDownWithSelection<CR>
+" inoremap <S-Home> <C-O>:action EditorLineStartWithSelection<CR>
+" inoremap <S-End> <C-O>:action EditorLineEndWithSelection<CR>
+
+"set keymodel+=continueselect
+"set keymodel=startsel
+
+":set km=startsel,stopsel,stopselect,stopvisual,continueselect,continuevisual
+set selectmode+=key
+set keymodel^=startsel
+
+"nnoremap <S-Left> iaeou<CR>
+"inoremap <S-Left> <C-O>iaoeu<CR>
+"inoremap <S-Left>iaeou<CR>
+
+set ideajoin
