@@ -1,11 +1,6 @@
-if [ "$(uname)" == "Darwin" ]; then
-    alias ls="gls --color=always"
-    eval `gdircolors ~/.dir_colors`
-else
-    alias ls="ls -G"
-    eval `dircolors ~/.dir_colors`
-fi
-
+alias ls="ls --color=auto"
+eval `dircolors ~/.dir_colors`
+    
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/.vim/sessions/:$PATH
 
@@ -18,9 +13,9 @@ export GIT_AUTHOR_NAME="Shaun Patterson"
 
 export PATH=~/bin:$PATH
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
-
-
-
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda
+#export PATH="/usr/local/cuda/bin:$PATH"
+xset r rate 120 120
+xset r rate 170 130
+# Initial time, speed
