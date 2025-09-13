@@ -1,0 +1,125 @@
+{
+  "components": [
+    {
+      "type": "cpu",
+      "configuration": {
+        "knobs": {
+          "base: priority": 5,
+          "base: compression resistance": 1,
+          "shared text color": {
+            "Red Component": 0.90,
+            "Blue Component": 0.90,
+            "Green Component": 0.90
+          }
+        }
+      }
+    },
+    {
+      "type": "memory",
+      "configuration": {
+        "knobs": {
+          "base: priority": 5,
+          "base: compression resistance": 1
+        }
+      }
+    },
+    {
+      "type": "network",
+      "configuration": {
+        "knobs": {
+          "base: priority": 5,
+          "base: compression resistance": 1
+        }
+      }
+    },
+    {
+      "type": "git",
+      "configuration": {
+        "knobs": {
+          "base: priority": 5,
+          "base: compression resistance": 1,
+          "iTermStatusBarGitComponentPollingIntervalKey": 2,
+          "shared text color": {
+            "Red Component": 0.70,
+            "Blue Component": 0.90,
+            "Green Component": 0.80
+          }
+        }
+      }
+    },
+    {
+      "type": "current_directory",
+      "configuration": {
+        "knobs": {
+          "base: priority": 6,
+          "base: compression resistance": 1,
+          "path": "path",
+          "shared text color": {
+            "Red Component": 0.80,
+            "Blue Component": 0.60,
+            "Green Component": 0.90
+          }
+        }
+      }
+    },
+    {
+      "type": "job_count",
+      "configuration": {
+        "knobs": {
+          "base: priority": 4,
+          "base: compression resistance": 1,
+          "minwidth": 2,
+          "shared text color": {
+            "Red Component": 0.95,
+            "Blue Component": 0.65,
+            "Green Component": 0.75
+          }
+        }
+      }
+    },
+    {
+      "type": "clock",
+      "configuration": {
+        "knobs": {
+          "base: priority": 10,
+          "base: compression resistance": 1,
+          "format": "h:mm a",
+          "shared text color": {
+            "Red Component": 0.85,
+            "Blue Component": 0.85,
+            "Green Component": 0.85
+          }
+        }
+      }
+    },
+    {
+      "type": "battery",
+      "configuration": {
+        "knobs": {
+          "base: priority": 3,
+          "base: compression resistance": 1
+        }
+      }
+    }
+  ],
+  "advanced_configuration": {
+    "font": "MesloLGS-NF-Regular 11",
+    "algorithm": 0,
+    "auto-rainbow style": 0,
+    "separator color": {
+      "Red Component": 0.30,
+      "Blue Component": 0.30,
+      "Green Component": 0.30
+    },
+    "background color": {
+      "Red Component": 0.12,
+      "Blue Component": 0.16,
+      "Green Component": 0.13
+    },
+    "default text color": {
+      "Red Component": 0.85,
+      "Blue Component": 0.85,
+      "Green Component": 0.85
+    }
+  }
+}

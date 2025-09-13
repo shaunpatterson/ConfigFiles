@@ -8,20 +8,34 @@ if not set -q __fish_config_initialized
     set -Ux EDITOR vi
     set -Ux VISUAL vi
     
-    # Better ls colors
-    set -Ux LSCOLORS (vivid generate ayu 2>/dev/null || echo "ExGxBxDxCxEgEdxbxgxcxd")
+    # Better ls colors - check for vivid first, fallback to default
+    if type -q vivid
+        set -Ux LSCOLORS (vivid generate ayu 2>/dev/null; or echo "Gxfxcxdxbxegedabagacad")
+    else
+        set -Ux LSCOLORS Gxfxcxdxbxegedabagacad
+    end
     
     # Set locale
     set -Ux LANG en_US.UTF-8
     set -Ux LC_ALL en_US.UTF-8
 end
 
+# Homebrew path (macOS specific)
+if test -d /opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin
+end
+
 # Python environment management
 set -gx PYENV_ROOT $HOME/.pyenv
-set -gx PYENV_VERSION 3.11.6
+set -gx PYENV_VERSION 3.11.11
 if test -d $PYENV_ROOT/bin
     fish_add_path $PYENV_ROOT/bin
     pyenv init - | source
+end
+
+# Java environment management
+if type -q jenv
+    status --is-interactive; and jenv init - | source
 end
 
 # Go path
@@ -83,9 +97,15 @@ if type -q rg
     set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
 end
 
-# Set keyboard repeat rate (X11)
-if test -n "$DISPLAY"
-    xset r rate 140 120 2>/dev/null
+# macOS specific keyboard settings
+if test (uname) = "Darwin"
+    # These are set once, no need to repeat on every shell start
+    # Consider moving to a one-time setup script
+    defaults write com.jetbrains.intellij ApplePressAndHoldEnabled -bool false 2>/dev/null
+    defaults write -g ApplePressAndHoldEnabled -bool false 2>/dev/null
+    defaults write -g KeyRepeat -int 1 2>/dev/null
+    defaults write -g InitialKeyRepeat -int 8 2>/dev/null
+    defaults write .GlobalPreferences com.apple.mouse.scaling -1 2>/dev/null
 end
 
 # Better command not found handler
@@ -94,12 +114,11 @@ function fish_command_not_found
     
     # Suggest installation if possible
     if test "$argv[1]" = "bat"
-        echo "Try: sudo apt install bat"
-        echo "Note: On Ubuntu/Debian, the command may be 'batcat' instead of 'bat'"
-    else if type -q apt
-        echo "Try: sudo apt install $argv[1]"
+        echo "Try: brew install bat"
     else if type -q brew
         echo "Try: brew install $argv[1]"
+    else if type -q apt
+        echo "Try: sudo apt install $argv[1]"
     end
 end
 
@@ -162,6 +181,14 @@ set -gx COMPOSE_DOCKER_CLI_BUILD 1
 # Python development
 set -gx PYTHONDONTWRITEBYTECODE 1
 set -gx PYTHONUNBUFFERED 1
+
+# Better ls colors and aliases
+alias ls='ls -G'
+
+# Load iTerm2 shell integration
+if test -e ~/.config/iterm2/iterm2_shell_integration.fish
+    source ~/.config/iterm2/iterm2_shell_integration.fish
+end
 
 # Source local configuration if it exists
 if test -f ~/.config/fish/local.fish
